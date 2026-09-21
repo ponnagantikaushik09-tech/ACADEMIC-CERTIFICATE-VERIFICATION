@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LYNKSCERT | Certificate Verification</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/metallic-cyber-theme.css?v=20260902-jarvis-final">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#home"><span>LYNKS</span><b>CERT</b><small>INTELLIGENT CERTIFICATE SECURITY</small></a>
+  <nav class="navLinks">
+    <a class="active" href="#home">HOME</a>
+    <a href="#verify">VERIFY CERTIFICATE</a>
+    <a href="#how">HOW IT WORKS</a>
+    <a href="#about">ABOUT</a>
+    <a href="#contact">CONTACT</a>
+  </nav>
+  <a class="verifyNow" href="#verify">VERIFY NOW <span>↗</span></a>
+</header>
+
+<main id="home">
+  <section class="hero">
+    <div class="heroHud"></div>
+    <div class="heroCopy">
+      <div class="eyebrow">BLOCKCHAIN SECURED</div>
+      <h1><span>VERIFY.</span><span>TRUST.</span><strong>SECURE.</strong></h1>
+      <p>Advanced cryptographic certificate verification using SHA-256 hashing and Merkle Tree validation on a secure digital infrastructure.</p>
+      <div class="heroActions">
+        <a class="primary" href="#verify">GET STARTED <b>→</b></a>
+        <a class="secondary" href="#how">MORE INFORMATION</a>
+      </div>
+      <div class="heroStats"><span>SHA-256</span><i></i><span>MERKLE TREE</span><i></i><span>TAMPER DETECTION</span><i></i><span>SECURE ANALYSIS</span><i></i><span><b>98%</b> TRUST SCORE</span></div>
+    </div>
+  </section>
+
+  <section class="dashboard" id="verify">
+    <article class="verifyCard">
+      <div class="cardTitle"><span></span><div><h2>VERIFY CERTIFICATE</h2><p>Upload your certificate PDF to begin the secure verification process</p></div></div>
+      <label id="uploadArea" class="uploadArea" for="pdfUpload">
+        <div class="cloud">⌃</div>
+        <h3>DRAG &amp; DROP YOUR CERTIFICATE PDF HERE</h3>
+        <p>or</p>
+        <button id="chooseFileButton" type="button">CHOOSE FILE</button>
+        <button id="changeFileButton" class="changeFileButton" type="button" hidden>CHANGE FILE</button>
+        <small>Only PDF files are supported. Max size: 10MB</small>
+        <input id="pdfUpload" type="file" accept="application/pdf,.pdf" hidden>
+      </label>
+      <div id="fileName" class="filename"><span>○</span> No certificate selected</div>
+      <button id="startVerification" class="startVerification">VERIFY CERTIFICATE <b>→</b></button>
+      <div class="stepsPreview" id="how">
+        <span>01 UPLOAD</span><i></i><span>02 HASH</span><i></i><span>03 MERKLE</span><i></i><span>04 RESULT</span>
+      </div>
+    </article>
+
+    <aside class="sideColumn">
+      <article class="whyCard" id="about">
+        <div class="sideTitle"><span></span><h2>WHY LYNKSCERT?</h2></div>
+        <div class="feature"><em>◇</em><div><b>SHA-256 HASHING</b><p>Cryptographic fingerprinting for certificate integrity.</p></div></div>
+        <div class="feature"><em>⌘</em><div><b>MERKLE TREE VERIFICATION</b><p>Trusted proof path for fast authenticity checks.</p></div></div>
+        <div class="feature"><em>▢</em><div><b>BLOCKCHAIN SECURED</b><p>Immutable certificate records and verification history.</p></div></div>
+        <div class="feature"><em>✓</em><div><b>TAMPER DETECTION</b><p>Modified or unknown certificates are rejected.</p></div></div>
+      </article>
+      <article class="scoreCard">
+        <div class="sideTitle"><span></span><h2>TRUST SCORE</h2></div>
+        <div class="score"><strong>98.7%</strong><small>system integrity</small><p>Live verification core</p></div>
+        <div class="chart"><svg viewBox="0 0 320 100" preserveAspectRatio="none"><path d="M0,85 L15,60 L28,48 L42,58 L55,52 L70,63 L85,47 L98,54 L110,42 L124,52 L138,30 L151,43 L165,37 L178,49 L191,35 L204,47 L218,39 L230,45 L243,28 L257,25 L270,14 L285,29 L300,20 L320,3" fill="none"/></svg></div>
+      </article>
+    </aside>
+  </section>
+</main>
+
+<!-- Full-screen JARVIS verification console. It opens immediately after Verify Certificate is pressed. -->
+<section id="verificationConsole" class="verificationConsole" aria-hidden="true">
+  <div class="consoleGlow"></div>
+  <div class="consoleTopbar">
+    <div class="consoleBrand"><span>LYNKS</span>CERT <small>// JARVIS VERIFICATION CORE</small></div>
+    <div class="scanProgressHud" id="scanProgressHud"><strong id="scanProgressValue">0%</strong><span id="scanProgressText">ANALYZING DOCUMENT LAYERS</span></div><div class="consoleState" id="consoleState">SYSTEM READY</div>
+    <button id="closeConsole" class="closeConsole" type="button" aria-label="Close verification console">×</button>
+  </div>
+
+  <div class="consoleGrid">
+    <section class="documentPanel">
+      <div class="panelHeader">
+        <div><span class="panelKicker">01 // VISUAL ANALYSIS</span><h2>Certificate Analysis</h2></div>
+        <span id="scanReadout" class="scanReadout">WAITING</span>
+      </div>
+      <div class="documentViewport" id="documentViewport">
+        <iframe id="certificateFrame" title="Uploaded certificate preview"></iframe>
+        <div class="scannerGrid"></div>
+        <div class="scanCorners"><i></i><i></i><i></i><i></i></div>
+        <div id="scanBeam" class="scanBeam"></div>
+        <div id="scanLabel" class="scanLabel">INITIALIZING SCAN <b>0%</b></div>
+        <div id="scanLock" class="scanLock">DOCUMENT LOCKED</div>
+      </div>
+      <div class="documentMeta"><span id="consoleFileName">No document</span><span id="consoleFileMeta">PDF // 0 KB</span></div>
+    </section>
+
+    <section class="sequencePanel">
+      <div class="panelHeader">
+        <div><span class="panelKicker">02 // VERIFICATION CORE</span><h2>Verification Sequence</h2></div>
+        <span class="corePulse">● CORE ONLINE</span>
+      </div>
+
+      <div class="sequenceList" id="sequenceList">
+        <div class="sequenceStep" data-step="1"><div class="stepIndex">01</div><div class="stepCopy"><b>DOCUMENT UPLOADED</b><small>Certificate received and loaded</small></div><div class="stepMark">•</div></div>
+        <div class="sequenceStep" data-step="2"><div class="stepIndex">02</div><div class="stepCopy"><b>VERIFYING HASH</b><small>Generating SHA-256 fingerprint</small></div><div class="stepMark">•</div></div>
+        <div class="sequenceStep" data-step="3"><div class="stepIndex">03</div><div class="stepCopy"><b>VERIFYING MERKLE</b><small>Tracing trusted verification path</small></div><div class="stepMark">•</div></div>
+        <div class="sequenceStep" data-step="4"><div class="stepIndex">04</div><div class="stepCopy"><b>VERIFICATION RESULT</b><small>Awaiting authenticity result</small></div><div class="stepMark">•</div></div>
+      </div>
+
+      <div id="liveReadout" class="liveReadout"><span>LIVE CORE READOUT</span><strong>Waiting for certificate analysis...</strong></div>
+      <div id="consoleResult" class="consoleResult" aria-live="polite"></div>
+
+      
+    </section>
+  </div>
+</section>
+
+<!-- Standalone document viewer shown after a certificate has been selected. -->
+<section id="documentPreviewModal" class="documentPreviewModal" aria-hidden="true">
+  <div class="documentPreviewBackdrop"></div>
+  <div class="documentPreviewCard" role="dialog" aria-modal="true" aria-labelledby="documentPreviewTitle">
+    <div class="documentPreviewHeader">
+      <div>
+        <span class="panelKicker">DOCUMENT VIEWER // SECURE PREVIEW</span>
+        <h2 id="documentPreviewTitle">Selected Certificate</h2>
+      </div>
+      <button id="closeDocumentPreview" class="closeDocumentPreview" type="button" aria-label="Close document preview">×</button>
+    </div>
+    <div class="documentPreviewViewport">
+      <iframe id="documentPreviewFrame" title="Selected certificate preview"></iframe>
+    </div>
+    <div class="documentPreviewMeta"><span id="previewFileName">No document</span><span>PDF PREVIEW</span></div>
+  </div>
+</section>
+
+<footer id="contact"><span>© 2024 LYNKSCERT. All rights reserved.</span><span>Built for secure digital verification.</span><span>JARVIS CORE // SECURE BY DESIGN</span></footer>
+<script src="script.js"></script>
+</body>
+</html>
